@@ -1,17 +1,23 @@
 # Warning
 ---
-Since this is only a develop phase, it usually has the localhost config in the url from React to python, modify and include the host ip for let to other users to play
+**In development**
 
-This code might contain bugs in the app or produce incorrect answers, and therefore needs to be reviewed. If you have any suggestions for improving the application or if you find any errors, please contact me via email at carlosbilbao2@gmail.com or make a pull request and assign it to me.
+This project is por my own TFM for my Master's Degree in Artificial Intelligence. So it should not be copied or used before 08/2024.
 
-# QuizzGame
+
+# Artificial Intelligence
 ---
-QuizzGame is a quiz game application featuring a user interface built with React and game logic implemented in a Python server using Flask.
+As part of this final project for my Master, I have develop an Automodelizer CNN, using genetic algorithms in order to search the best architecture. Read `TFM.docx` in order to learn more about it.
+
+## Interface
+---
+As part of this final project for my Master, I have develop an Interface to let the user use this Automodelizer, letting him to modify some parameters as the number od descendants, number of epochs....Read `TFM.docx` in order to learn more about it.
 
 ## Project Structure
 ---
-- `python`: Holds the game logic implemented using Python with Flask and Data Base 
+- `python`: hold the python server with the Automodelizer.
 - `web`: Holds the user interface of the app, implemented in React.
+- `AutoModelizer.ipynb`: a jupyer notebook with all the information and development of the Automodelizer with some use examples.
 
 ## Installation
 ---
@@ -40,28 +46,6 @@ Navigate to the `python_server` directory and install Flask:
     cd python
     pip install -r requirements.txt
 ```
-
-## Installing DataBase
----
-For macOs system you can use:
-```
-brew install postgresql
-```
-
-For other OS visit: https://www.postgresql.org/download/
-
-### Run PostgreSQL Service
-Once installed, start the PostgreSQL service. 
-* On macOS, you can use the following command:
-```sh
-brew services start postgresql
-```
-* On Linux, the command will typically be:
-```
-sudo service postgresql start
-```
-
-* On Windows, you can start the service through the Services application.
 
 ## To Use With Docker and K8s enviroment
 ---
