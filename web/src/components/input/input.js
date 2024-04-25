@@ -3,19 +3,24 @@ import './input.css'; // Asegúrate de que este archivo CSS está en el mismo di
 
 function InputBox() {
     const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [data, setData] = useState('');
+    const [email, setEmail] = useState('');
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
     };
 
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
+    const handleData = (event) => {
+        setData(event.target.value);
+    };
+
+    const handleEmail = (event) => {
+        setEmail(event.target.value);
     };
 
     const handleSubmit = (event) => {
         event.preventDefault(); // Previene el envío del formulario
-        console.log('Username:', username, 'Password:', password);
+        console.log('Username:', username, 'Data:', data, 'Email: ', email);
         // Aquí puedes añadir la lógica para verificar las credenciales, etc.
     };
 
@@ -34,21 +39,44 @@ function InputBox() {
                 </div>
                 <div className="user-box">
                     <input
-                        type="password"
-                        name="password"
+                        type="email"
+                        name="email"
                         required
-                        value={password}
-                        onChange={handlePasswordChange}
+                        value={email}
+                        onChange={handleEmail}
                     />
-                    <label>Dataset to search</label>
+                    <label>Email</label>
                 </div>
-                <center>
-                    <a>
-                        <span>_</span>
-                        <b type="submit" className="login-button">SEND</b>
-                    </a>
-                </center>
+                <div className="user-box">
+                    <input
+                        type="text"
+                        name="data"
+                        required
+                        value={data}
+                        onChange={handleData}
+                    />
+                    <label>Data</label>
+                </div>
+                <button class="cta">
+                    <span class="hover-underline-animation"> work your magic </span>
+                    <svg
+                        id="arrow-horizontal"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="30"
+                        height="10"
+                        viewBox="0 0 46 16"
+                    >
+                        <path
+                            id="Path_10"
+                            data-name="Path 10"
+                            d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                            transform="translate(30)"
+                        ></path>
+                    </svg>
+                </button>
+
             </form>
+
         </div>
     );
 }
