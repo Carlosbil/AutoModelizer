@@ -40,7 +40,7 @@ To test the application locally, follow these steps:
 
 ## Install Python Server Dependencies
 ---
-Navigate to the `python_server` directory and install Flask:
+Navigate to the `python` directory and install the libraries:
 
 ```sh
     cd python
