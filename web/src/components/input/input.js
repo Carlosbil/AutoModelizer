@@ -5,6 +5,8 @@ function InputBox() {
     const [username, setUsername] = useState('');
     const [data, setData] = useState('');
     const [email, setEmail] = useState('');
+    const [numDesc, setNumDesc] = useState('');
+    const [numEpochs, setNumEpochs] = useState('');
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -16,6 +18,14 @@ function InputBox() {
 
     const handleEmail = (event) => {
         setEmail(event.target.value);
+    };
+
+    const handleNumDesc = (event) => {
+        setNumDesc(event.target.value);
+    };
+
+    const handleNumEpochs = (event) => {
+        setNumEpochs(event.target.value);
     };
 
     const handleSubmit = (event) => {
@@ -50,12 +60,31 @@ function InputBox() {
                 <div className="user-box">
                     <input
                         type="text"
+                        name="numDesc"
+                        required
+                        value={numDesc}
+                        onChange={handleNumDesc}
+                    />
+                    <label>Number of descendency</label>
+                </div>
+                <div className="user-box">
+                    <input
+                        type="text"
+                        name="numEpochs"
+                        required
+                        value={numEpochs}
+                        onChange={handleNumEpochs}
+                    />
+                    <label>Number of epochs</label>
+                </div>
+                <div className="user-box">
+                    <input
+                        type="file"
                         name="data"
                         required
                         value={data}
                         onChange={handleData}
                     />
-                    <label>Data</label>
                 </div>
                 <button class="cta">
                     <span class="hover-underline-animation"> work your magic </span>
