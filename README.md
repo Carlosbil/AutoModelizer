@@ -27,7 +27,7 @@ To test the application locally, follow these steps:
 
 1. Navigate to the `questionary` directory:
    ```sh
-   cd questionary   
+   cd web   
     ```
 2. Install dependencies with npm:
 ```sh 
@@ -72,15 +72,6 @@ minikube start
 
 ### Both
 After You have installed both of them, lets use our application:
-
-Be sure that you have instaled postgresql, if not, use:
-
-```bash
-docker pull postgres
-```
-
-After that, in root folder, just use the following command to deploy with Docker:
-
 ```bash
 docker-compose up -d
 ```
@@ -94,7 +85,7 @@ To use k8s use:
 ---
 
 To test the application, navigate to the questionary directory and use one of the following commands:
-From `/questionary`
+From `/web`
 
 * `npm start`: Runs only the React server.
 * `npm run both`: Runs both servers, React and Python.(need to have installed `npm install concurrently` )

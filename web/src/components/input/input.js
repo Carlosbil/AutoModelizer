@@ -29,9 +29,8 @@ function InputBox() {
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault(); // Previene el envío del formulario
+        event.preventDefault();
         console.log('Username:', username, 'Data:', data, 'Email: ', email);
-        // Aquí puedes añadir la lógica para verificar las credenciales, etc.
     };
 
     return (
