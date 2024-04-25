@@ -10,3 +10,4 @@ torch
 SentencePiece
 accelerate
 seaborn
+pip install torchsummary
