@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import './input.css'; // Asegúrate de que este archivo CSS está en el mismo directorio que tu componente
+import './input.css';
+import { UPLOAD } from './enpoints';
 
 function InputBox() {
     const [username, setUsername] = useState('');
-    const [data, setData] = useState('');
+    const [file, setFile] = useState(null); // Cambiado para manejar archivo
     const [email, setEmail] = useState('');
     const [numDesc, setNumDesc] = useState('');
     const [numEpochs, setNumEpochs] = useState('');
@@ -12,25 +13,38 @@ function InputBox() {
         setUsername(event.target.value);
     };
 
-    const handleData = (event) => {
-        setData(event.target.value);
+    const handleFileChange = (event) => {
+        setFile(event.target.files[0]); // Manejo de archivo
     };
 
-    const handleEmail = (event) => {
+    const handleEmailChange = (event) => {
         setEmail(event.target.value);
     };
 
-    const handleNumDesc = (event) => {
+    const handleNumDescChange = (event) => {
         setNumDesc(event.target.value);
     };
 
-    const handleNumEpochs = (event) => {
+    const handleNumEpochsChange = (event) => {
         setNumEpochs(event.target.value);
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('Username:', username, 'Data:', data, 'Email: ', email);
+        const formData = new FormData();
+        formData.append('username', username);
+        formData.append('email', email);
+        formData.append('numDesc', numDesc);
+        formData.append('numEpochs', numEpochs);
+        formData.append('file', file); // Agregar el archivo al FormData
+
+        fetch(UPLOAD, { // Ajusta la URL según sea necesario
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
     };
 
     return (
@@ -52,7 +66,7 @@ function InputBox() {
                         name="email"
                         required
                         value={email}
-                        onChange={handleEmail}
+                        onChange={handleEmailChange}
                     />
                     <label>Email</label>
                 </div>
@@ -62,7 +76,7 @@ function InputBox() {
                         name="numDesc"
                         required
                         value={numDesc}
-                        onChange={handleNumDesc}
+                        onChange={handleNumDescChange}
                     />
                     <label>Number of descendency</label>
                 </div>
@@ -72,7 +86,7 @@ function InputBox() {
                         name="numEpochs"
                         required
                         value={numEpochs}
-                        onChange={handleNumEpochs}
+                        onChange={handleNumEpochsChange}
                     />
                     <label>Number of epochs</label>
                 </div>
@@ -81,12 +95,11 @@ function InputBox() {
                         type="file"
                         name="data"
                         required
-                        value={data}
-                        onChange={handleData}
+                        onChange={handleFileChange}
                     />
                 </div>
-                <button class="cta">
-                    <span class="hover-underline-animation"> work your magic </span>
+                <button type="submit" className="cta">
+                    <span className="hover-underline-animation"> work your magic </span>
                     <svg
                         id="arrow-horizontal"
                         xmlns="http://www.w3.org/2000/svg"
@@ -102,9 +115,7 @@ function InputBox() {
                         ></path>
                     </svg>
                 </button>
-
             </form>
-
         </div>
     );
 }

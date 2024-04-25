@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify
 import os
-
+from flask_cors import CORS
 app = Flask(__name__)
+CORS(app)
 
 # path to save the files uploaded by the users
 app.config['UPLOAD_FOLDER'] = 'uploads'
@@ -17,7 +18,7 @@ def upload_file():
         return jsonify({"error": "No file part in the request"}), 400
 
     file = request.files['file']
-    user = request.form.get('user')
+    user = request.form.get('username')
     email = request.form.get('email')
 
     # if there is no user,  or email, send an error
