@@ -4,7 +4,8 @@ from torch.utils.data import DataLoader, Dataset
 import torchvision
 import torchvision.datasets as datasets
 import torchvision.transforms as transforms
-from torch.utils.data import DataLoader
+from torchvision.datasets import ImageFolder
+from torch.utils.data import DataLoader, random_split
 import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
@@ -14,7 +15,7 @@ from customDataset import CustomDataset
 import random
 from tqdm import tqdm
 from torchsummary import summary
-
+import os
 class Genetic:
     def __init__(self, num_classes):
         # DATOS DEL DATASET DE PRUEBA CIFAR 100
@@ -75,6 +76,38 @@ class Genetic:
         val_loader = DataLoader(dataset=val_dataset, batch_size=self.batch_size, shuffle=False)
 
         return train_loader, val_loader
+    
+    def load_data_image(self, root_path):
+        # Cargar conjuntos de datos de entrenamiento y validación (prueba)
+        train_path = os.path.join(root_path, "train")
+        test_path = os.path.join(root_path, "test")
+
+        train_dataset = ImageFolder(root=train_path, transform=self.transform)
+        test_dataset = ImageFolder(root=test_path, transform=self.transform)
+
+        # Crear DataLoader para los datasets
+        train_loader = DataLoader(dataset=train_dataset, batch_size=self.batch_size, shuffle=True)
+        test_loader = DataLoader(dataset=test_dataset, batch_size=self.batch_size, shuffle=False)
+
+        return train_loader, test_loader
+    
+    def load_data_image_not_splitted(self, csv_path):
+        # Cargamos el dataset
+        dataset = ImageFolder(root=csv_path, transform=self.transform)
+
+        # Calcular el tamaño del conjunto de validación
+        val_size = int(0.2 * len(dataset))
+        train_size = len(dataset) - val_size
+
+        # Dividir el dataset en entrenamiento y validación
+        train_dataset, val_dataset = random_split(dataset, [train_size, val_size])
+
+        # Crear DataLoader para los datasets
+        train_loader = DataLoader(dataset=train_dataset, batch_size=self.batch_size, shuffle=True)
+        val_loader = DataLoader(dataset=val_dataset, batch_size=self.batch_size, shuffle=False)
+
+        return train_loader, val_loader
+    
     
     def check_cuda(self):
         if torch.cuda.is_available():

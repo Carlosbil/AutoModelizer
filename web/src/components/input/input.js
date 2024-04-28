@@ -9,6 +9,8 @@ function InputBox() {
     const [numDesc, setNumDesc] = useState('');
     const [numEpochs, setNumEpochs] = useState('');
     const [numClases, setNumClases] = useState('')
+    const [splitted, setSplitted] = useState('')
+
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
     };
@@ -33,6 +35,15 @@ function InputBox() {
         setNumClases(event.target.value);
     };
 
+    const handleSplitted = (event) => {
+        if(splitted === "yes"){
+            setSplitted("no");
+        }else{
+            setSplitted("yes");
+        }
+    };
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData();
@@ -42,13 +53,14 @@ function InputBox() {
         formData.append('numEpochs', numEpochs);
         formData.append('file', file); // Agregar el archivo al FormData
         formData.append('num_clases', numClases)
+        formData.append('splitted', splitted)
         fetch(UPLOAD, { // Ajusta la URL según sea necesario
             method: 'POST',
             body: formData,
         })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
     };
 
     return (
@@ -103,6 +115,17 @@ function InputBox() {
                         onChange={handleNumClases}
                     />
                     <label>Number of classes</label>
+                </div>
+                <div className="cyberpunk-checkbox-label">
+                    <input
+                        className='cyberpunk-checkbox'
+                        type="checkbox"
+                        name="splitted"
+                        required
+                        value={splitted}
+                        onChange={handleSplitted}
+                    />
+                    <label>Is it splitted into train and test?</label>
                 </div>
                 <div className="user-box">
                     <input

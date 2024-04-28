@@ -6,7 +6,8 @@ scikit-learn
 matplotlib
 tensorflow==2.10.0
 tensorflow_datasets
-torch
 SentencePiece
 accelerate
 seaborn
+flask
+flask-cors
