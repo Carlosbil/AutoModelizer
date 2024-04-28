@@ -8,7 +8,7 @@ function InputBox() {
     const [email, setEmail] = useState('');
     const [numDesc, setNumDesc] = useState('');
     const [numEpochs, setNumEpochs] = useState('');
-
+    const [numClases, setNumClases] = useState('')
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
     };
@@ -29,6 +29,10 @@ function InputBox() {
         setNumEpochs(event.target.value);
     };
 
+    const handleNumClases = (event) => {
+        setNumClases(event.target.value);
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData();
@@ -37,7 +41,7 @@ function InputBox() {
         formData.append('numDesc', numDesc);
         formData.append('numEpochs', numEpochs);
         formData.append('file', file); // Agregar el archivo al FormData
-
+        formData.append('num_clases', numClases)
         fetch(UPLOAD, { // Ajusta la URL según sea necesario
             method: 'POST',
             body: formData,
@@ -89,6 +93,16 @@ function InputBox() {
                         onChange={handleNumEpochsChange}
                     />
                     <label>Number of epochs</label>
+                </div>
+                <div className="user-box">
+                    <input
+                        type="text"
+                        name="numEpochs"
+                        required
+                        value={numClases}
+                        onChange={handleNumClases}
+                    />
+                    <label>Number of classes</label>
                 </div>
                 <div className="user-box">
                     <input
