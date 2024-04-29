@@ -1,0 +1,17 @@
+{
+    "bilbao@gmail.com": {
+        "num_conv_layers": 2,
+        "filters": [
+            32,
+            128
+        ],
+        "kernel_sizes": [
+            1,
+            5
+        ],
+        "learning_rate": 1e-05,
+        "fully_connected": 0,
+        "dropout": 0,
+        "fitness": 0.5637
+    }
+}

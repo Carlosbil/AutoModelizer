@@ -35,8 +35,8 @@ class Genetic:
         ])
         self.learning_rates = [0.1, 0.01, 0.001, 0.0001, 0.00001, 0.000001]
         self.filter_range = [8,16,32,64,128]
-        self.kernel_size_range = [1,3,5,7,11] 
-        self.population_size = 10
+        self.kernel_size_range = [1,3,5,7] 
+        self.population_size = 4
         self.min_conv_layers = 1
         self.max_conv_layers = 3
         self.min_filters = 16
@@ -316,7 +316,7 @@ class Genetic:
             Lista de los 4 mejores individuos.
         """
         winners = []
-        for _ in range(5):
+        for _ in range(3):
             candidates = random.sample(population, 2)
             winner = max(candidates, key=lambda x: x['fitness'])
             winners.append(winner)
@@ -351,7 +351,7 @@ class Genetic:
             print(f"Los 4 mejores son: \n {winners}")
 
             # Realizamos cruce y mutación con descendientes que reemplazan a la población restante
-            for i in range(1, 5):
+            for i in range(1, 2):
                 descendency = self.mutate_individual(self.crossover(winners[i-1], winners[i]))
                 population[-i] = descendency   # Eliminamos las peores arquitecturas
             

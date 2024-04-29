@@ -3,6 +3,8 @@ import './input.css';
 import { RESULT, UPLOAD } from './enpoints';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import DataCard from '../dataCard/DataCard';
+import CircuitAnimation from '../Animation/CircuitAnimation';
 
 function InputBox() {
     const [username, setUsername] = useState('');
@@ -12,7 +14,8 @@ function InputBox() {
     const [numEpochs, setNumEpochs] = useState('');
     const [numClases, setNumClases] = useState('')
     const [splitted, setSplitted] = useState('')
-
+    const [sol, setSol] = useState(false)
+    const [result, setResult] = useState("Still working on it")
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
     };
@@ -91,18 +94,33 @@ function InputBox() {
                 }
                 return response.json();
             })
-            .then(data =>  {
-                console.log(data.message)
-                toast.info(data.message)
+            .then(data => {
+                if ("dropout" in data.message) {
+                    setResult(data.message)
+                    toast.success("The algorythm has been finished")
+                    setSol(true)
+                } else {
+                    if("error" in data.message){
+                        toast.error(data.message.error)
+                        setResult(data.message.error)
+                        setSol(false)
+                    }else{
+                    toast.info(data.message.Aux)
+                    setResult(data.message.Aux)
+                    setSol(false)
+                    }
+                }
             })
             .catch(error => {
                 console.error('Error:', error);
+
                 toast.error("An error has been found during your request, try again later");
             });
     };
 
     return (
         <div className='container'>
+            <CircuitAnimation />
             <div className="login-box">
                 <h2> Search the best architecture</h2>
                 <form onSubmit={handleSubmit}>
@@ -234,6 +252,7 @@ function InputBox() {
                             ></path>
                         </svg>
                     </button>
+                    {sol && <DataCard data={result} />}
                 </form>
             </div>
             <ToastContainer
@@ -245,7 +264,6 @@ function InputBox() {
                 pauseOnFocusLoss
                 pauseOnHover
             />
-
         </div>
     );
 }
