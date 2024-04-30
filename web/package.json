@@ -6,14 +6,16 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "concurrently": "^8.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "react-toastify": "^10.0.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "both": "sudo concurrently \"cd ../python && gunicorn --worker-class eventlet -w 1 --timeout 86400 server:app -b 0.0.0.0:3001 \" \"npm start\"",
-    "py": "sudo concurrently \"cd ../python && python3 server.py \" \"npm start\"",
+    "both": "concurrently \"cd ../python && python3 server.py \" \"npm start\"",
+    "py": "concurrently \"cd ../python && python3 server.py \" \"npm start\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

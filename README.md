@@ -21,14 +21,16 @@ As part of this final project for my Master, I have develop an Interface to let 
 
 ## Installation
 ---
+**You will need to have installed python=3.11.5, npm=10.1.0 and node=20.8.1**
+
 To test the application locally, follow these steps:
 
 ### Install User Interface Dependencies
 
 1. Navigate to the `questionary` directory:
-   ```sh
-   cd web   
-    ```
+```sh
+cd web   
+```
 2. Install dependencies with npm:
 ```sh 
     npm install
@@ -48,6 +50,7 @@ Navigate to the `python` directory and install the libraries:
 ```
 
 ## To Use With Docker and K8s enviroment
+Only do this step if you want to user docker enviroment
 ---
 ### Mac
 
@@ -79,16 +82,19 @@ docker-compose up -d
 To use k8s use:
 
 **This section are going to be completed...** 
-
-
 ## Usage
 ---
 
 To test the application, navigate to the questionary directory and use one of the following commands:
-From `/web`
+From `/web` directory:
 
 * `npm start`: Runs only the React server.
 * `npm run both`: Runs both servers, React and Python.(need to have installed `npm install concurrently` )
+
+From `/python` directory: 
+* `python3 server.py`: Runs python servers, please only use it if you don't have executed `npm run both` from `/web`.
+
+After run one of `/web` directory commands, it will open automatically a window in your browser, introduce the data and dataset, wait before the algorythm have been finished(you should see the progress if you have executed both servers without `npm run both`)
 
 ## Contributing
 
