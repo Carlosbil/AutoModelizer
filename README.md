@@ -21,6 +21,7 @@ As part of this final project for my Master, I have develop an Interface to let 
 
 ## Installation
 ---
+
 **You will need to have installed python=3.11.5, npm=10.1.0 and node=20.8.1**
 
 To test the application locally, follow these steps:
@@ -48,6 +49,15 @@ Navigate to the `python` directory and install the libraries:
     cd python
     pip install -r requirements.txt
 ```
+
+If you have CUDA in your computer please use:
+```sh
+pip uninstall torch
+```
+And install torch with cuda using the command from:
+https://pytorch.org/get-started/locally/
+
+
 
 ## To Use With Docker and K8s enviroment
 Only do this step if you want to user docker enviroment
