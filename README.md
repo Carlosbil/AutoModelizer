@@ -11,7 +11,7 @@ As part of this final project for my Master, I have develop an Automodelizer CNN
 
 ## Interface
 ---
-As part of this final project for my Master, I have develop an Interface to let the user use this Automodelizer, letting him to modify some parameters as the number od descendants, number of epochs....Read `TFM.docx` in order to learn more about it.
+As part of this final project for my Master, I have develop an Interface to let the user use this Automodelizer, letting him to modify some parameters as the number of descendants, number of epochs....Read `TFM.docx` in order to learn more about it.
 
 ## Project Structure
 ---
