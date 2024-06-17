@@ -4,7 +4,10 @@ import { RESULT, UPLOAD } from './enpoints';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import DataCard from '../dataCard/DataCard';
-import CircuitAnimation from '../Animation/CircuitAnimation';
+import TextGenerateEffect from '../describe/generateText';
+import { Input } from 'postcss';
+import Label from './label';
+import Input2 from './input2';
 
 function InputBox() {
     const [username, setUsername] = useState('');
@@ -100,14 +103,14 @@ function InputBox() {
                     toast.success("The algorythm has been finished")
                     setSol(true)
                 } else {
-                    if("error" in data.message){
+                    if ("error" in data.message) {
                         toast.error(data.message.error)
                         setResult(data.message.error)
                         setSol(false)
-                    }else{
-                    toast.info(data.message.Aux)
-                    setResult(data.message.Aux)
-                    setSol(false)
+                    } else {
+                        toast.info(data.message.Aux)
+                        setResult(data.message.Aux)
+                        setSol(false)
                     }
                 }
             })
@@ -120,61 +123,68 @@ function InputBox() {
 
     return (
         <div className='container'>
-            <CircuitAnimation />
-            <div className="login-box">
-                <h2> Search the best architecture</h2>
-                <form onSubmit={handleSubmit}>
-                    <div className="user-box">
-                        <input
+            <div className="max-w-md w-full mx-auto rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
+                <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200 mb-2 text-center">
+                    Search the best architecture
+                </h2>
+                <p className="text-neutral-600 text-sm max-w-sm dark:text-neutral-300 mb-4 text-center">
+                    <TextGenerateEffect
+                        words={"Introduce your data"}
+                        className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-2"
+                    />
+                </p>
+                <form className="my-4" onSubmit={handleSubmit}>
+                    <div className="mb-2">
+                        <Label htmlFor="name">Name</Label>
+                        <Input2
                             type="text"
                             name="username"
                             required
                             value={username}
                             onChange={handleUsernameChange}
                         />
-                        <label>Username</label>
                     </div>
-                    <div className="user-box">
-                        <input
+                    <div className="mb-2">
+                        <Label htmlFor="name">Email</Label>
+                        <Input2
                             type="email"
                             name="email"
                             required
                             value={email}
                             onChange={handleEmailChange}
                         />
-                        <label>Email</label>
                     </div>
-                    <div className="user-box">
-                        <input
+                    <div className="mb-2">
+                        <Label htmlFor="name">Number of descendency</Label>
+                        <Input2
                             type="text"
                             name="numDesc"
                             required
                             value={numDesc}
                             onChange={handleNumDescChange}
                         />
-                        <label>Number of descendency</label>
                     </div>
-                    <div className="user-box">
-                        <input
+                    <div className="mb-2">
+                        <Label htmlFor="name">Number of epochs</Label>
+                        <Input2
                             type="text"
                             name="numEpochs"
                             required
                             value={numEpochs}
                             onChange={handleNumEpochsChange}
                         />
-                        <label>Number of epochs</label>
                     </div>
-                    <div className="user-box">
-                        <input
+                    <div className="mb-2">
+                        <Label htmlFor="name">Number of classes</Label>
+                        <Input2
                             type="text"
                             name="numEpochs"
                             required
                             value={numClases}
                             onChange={handleNumClases}
                         />
-                        <label>Number of classes</label>
                     </div>
-                    <div className="cyberpunk-checkbox-label">
+                    <div className="mb-2">
                         <input
                             className='cyberpunk-checkbox'
                             type="checkbox"
@@ -183,9 +193,9 @@ function InputBox() {
                             value={splitted}
                             onChange={handleSplitted}
                         />
-                        <label>Is it splitted into train and test?</label>
+                        <Label>Is it splitted into train and test?</Label>
                     </div>
-                    <div className="user-box">
+                    <div className="mb-2">
                         <input
                             type="file"
                             name="data"
@@ -193,65 +203,54 @@ function InputBox() {
                             onChange={handleFileChange}
                         />
                     </div>
-                    <button type="submit" className="cta">
-                        <span className="hover-underline-animation"> work your magic </span>
-                        <svg
-                            id="arrow-horizontal"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="30"
-                            height="10"
-                            viewBox="0 0 46 16"
-                        >
-                            <path
-                                id="Path_10"
-                                data-name="Path 10"
-                                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                                transform="translate(30)"
-                            ></path>
-                        </svg>
-                    </button>
+                    <div className="flex justify-center">
+                            <button
+                                className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-slate-800 transition-all duration-300 hover:bg-slate-950 dark:hover:bg-slate-100"
+                                type="submit"
+                            >
+                                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+                                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-100 dark:bg-slate-950 px-6 py-2 text-sm font-medium text-black dark:text-white backdrop-blur-3xl transition-all duration-300 hover:bg-slate-950 hover:text-white dark:hover:bg-slate-100 dark:hover:text-black">
+                                    Work your magic &rarr;
+                                </span>
+                            </button>
+                        </div>
                 </form>
             </div>
-            <div className="login-box">
-                <h2> Check the results </h2>
-                <form onSubmit={handleSubmitStatus}>
-                    <div className="user-box">
-                        <input
+            <div className="max-w-md w-full mx-auto rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
+            <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200 mb-2 text-center">
+                 Check the results, please notice it could take several hours </h2>
+                 <form className="my-4" onSubmit={handleSubmitStatus}>
+                    <div className="mb-2">
+                        <Label htmlFor="name">Name</Label>
+                        <Input2
                             type="text"
                             name="username"
                             required
                             value={username}
                             onChange={handleUsernameChange}
                         />
-                        <label>Username</label>
                     </div>
-                    <div className="user-box">
-                        <input
+                    <div className="mb-2">
+                        <Label htmlFor="name">Email</Label>
+                        <Input2
                             type="email"
                             name="email"
                             required
                             value={email}
                             onChange={handleEmailChange}
                         />
-                        <label>Email</label>
                     </div>
-                    <button type="submit" className="cta">
-                        <span className="hover-underline-animation"> check results </span>
-                        <svg
-                            id="arrow-horizontal"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="30"
-                            height="10"
-                            viewBox="0 0 46 16"
-                        >
-                            <path
-                                id="Path_10"
-                                data-name="Path 10"
-                                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                                transform="translate(30)"
-                            ></path>
-                        </svg>
-                    </button>
+                    <div className="flex justify-center">
+                            <button
+                                className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-slate-800 transition-all duration-300 hover:bg-slate-950 dark:hover:bg-slate-100"
+                                type="submit"
+                            >
+                                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+                                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-100 dark:bg-slate-950 px-6 py-2 text-sm font-medium text-black dark:text-white backdrop-blur-3xl transition-all duration-300 hover:bg-slate-950 hover:text-white dark:hover:bg-slate-100 dark:hover:text-black">
+                                    check results &rarr;
+                                </span>
+                            </button>
+                        </div>
                     {sol && <DataCard data={result} />}
                 </form>
             </div>
