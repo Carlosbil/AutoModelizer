@@ -7,7 +7,7 @@ import TextGenerateEffect from "./generateText";
 import InputBox from "../input/input";
 
 export function Describe() {
-    const words2 = "Introduce a dataset to disover its best architecture"
+    const words2 = "Introduce a dataset to discover its best architecture"
 
   return (
     <AuroraBackground>
